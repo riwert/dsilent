@@ -23,10 +23,10 @@
         <div class="col s3">
             <ul class="collection">
                 {% for post in posts %}
-                    <li class="collection-item">                        
+                    <li class="collection-item">
                         <a href="/posts/{{ post.id }}" title="{{ post.title|escape }}">
                             {{ post.title }}
-                        </a>                    
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
