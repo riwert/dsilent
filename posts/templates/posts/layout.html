@@ -18,20 +18,25 @@
         <h5>Django Sample Project</h5>
         <p>Because the D is silent.</p>
     </header>
-    
+
     <section id="content" class="section">
         {% block content %}
         {% endblock %}
-    </section>    
+    </section>
 
-    <footer class="section page-footer teal">
+    <footer class="page-footer teal  center-align">
         <div class="fixed-action-btn">
             <a class="btn-floating btn-large waves-effect waves-light" href="/admin" title="Admin Panel">
                 <i class="material-icons">mode_edit</i>
             </a>
         </div>
+        <div class="container">
+            <p>
+                Powered by <a class="white-text text-darken-5" href="https://www.djangoproject.com" title="Django Project">Django</a>
+            </p>
+        </div>
         <div class="footer-copyright">
-            <div class="container center-align">            
+            <div class="container">
                 Made by <a class="white-text text-darken-5" href="http://revert.pl" title="Full-stack developer">Revert</a>
             </div>
         </div>
