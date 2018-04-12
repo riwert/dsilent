@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Dsilent - Django Sample Project</title>
+</head>
+<body>
+    <header class="section center-align teal white-text">
+        <h1>
+            <a class="white-text" href="/" title="Dsilent">
+                Dsilent
+            </a>
+        </h1>
+        <h5>Django Sample Project</h5>
+        <p>Because the D is silent.</p>
+    </header>
+    
+    <section id="content" class="section">
+        {% block content %}
+        {% endblock %}
+    </section>    
+
+    <footer class="section page-footer teal">
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large waves-effect waves-light" href="/admin" title="Admin Panel">
+                <i class="material-icons">mode_edit</i>
+            </a>
+        </div>
+        <div class="footer-copyright">
+            <div class="container center-align">            
+                Made by <a class="white-text text-darken-5" href="http://revert.pl" title="Full-stack developer">Revert</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</body>
+</html>
