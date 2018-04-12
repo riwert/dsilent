@@ -12,9 +12,9 @@ def index(request):
 
     return render(request, 'posts/index.html', context)
 
-def show(request, id):
-    posts = Post.objects.all().exclude(id=id).order_by('-created_at')[:10]
-    post = Post.objects.get(id=id)
+def show(request, slug):
+    posts = Post.objects.all().exclude(slug=slug).order_by('-created_at')[:10]
+    post = Post.objects.get(slug=slug)
 
     context = {
         'title': 'Other posts',
