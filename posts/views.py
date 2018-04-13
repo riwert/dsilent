@@ -1,13 +1,22 @@
 from django.shortcuts import render
-from .models import Post
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Post, Category
 
 # Create your views here.
+POSTS_LIMIT = 5
+
 def index(request):
     posts = Post.objects.all().order_by('-created_at')
+    categories = Category.objects.all().order_by('name')
+
+    paginator = Paginator(posts, POSTS_LIMIT)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
 
     context = {
         'title': 'Posts',
         'posts': posts,
+        'categories': categories,
     }
 
     return render(request, 'posts/index.html', context)
@@ -23,3 +32,24 @@ def show(request, slug):
     }
 
     return render(request, 'posts/show.html', context)
+
+def category(request, slug):
+    if slug == 'none':
+        category = None
+        posts = Post.objects.all().filter(category=category).order_by('-created_at')
+    else:
+        category = Category.objects.get(slug=slug)
+        posts = Post.objects.all().filter(category=category).order_by('-created_at')
+    categories = Category.objects.all().order_by('name')
+
+    paginator = Paginator(posts, POSTS_LIMIT)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    context = {
+        'title': category.name if category else 'Without category',
+        'posts': posts,
+        'categories': categories,
+    }
+
+    return render(request, 'posts/index.html', context)
