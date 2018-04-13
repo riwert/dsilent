@@ -8,14 +8,14 @@
                 <article class="card-panel hoverable center-align">
                     <div class="card-content">
                         <h3 class="card-title">
-                            <a href="/posts/{{ post.slug }}" title="{{ post.title|escape }}">
+                            <a href="/{{ post.slug }}" title="{{ post.title|escape }}">
                                 {{ post.title }}
                             </a>
                         </h3>
                         <p>{{ post.body|truncatewords:10 }}</p>
                     </div>
                     <div class="card-action">
-                        <a class="link btn waves-effect {{ primary_color }}" href="/posts/{{ post.slug }}" title="Read more">read more</a>
+                        <a class="link btn waves-effect {{ primary_color }}" href="/{{ post.slug }}" title="Read more">read more</a>
                     </div>
                 </article>
             {% endfor %}
@@ -25,19 +25,19 @@
             <h5>Categories</h5>
             <ul class="collection">
                 <li class="collection-item">
-                    <a href="/posts/" title="All">
+                    <a href="/" title="All">
                         All
                     </a>
                 </li>
                 {% for category in categories %}
                     <li class="collection-item">
-                        <a href="/posts/category/{{ category.slug }}" title="{{ category.name|escape }}">
+                        <a href="/category/{{ category.slug }}" title="{{ category.name|escape }}">
                             {{ category.name }}
                         </a>
                     </li>
                 {% endfor %}
                 <li class="collection-item">
-                    <a href="/posts/category/none" title="Without category">
+                    <a href="/category/none" title="Without category">
                         None
                     </a>
                 </li>
@@ -46,7 +46,7 @@
             <ul class="tags collection">
                 <li class="collection-item">                    
                     {% for tag in tags %}
-                        <a class="badge new" href="/posts/tag/{{ tag.name }}" title="{{ tag.name|escape }}">
+                        <a class="badge new" href="/tag/{{ tag.name }}" title="{{ tag.name|escape }}">
                             #{{ tag.name }}
                         </a>
                     {% endfor %}
