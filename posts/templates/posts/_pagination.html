@@ -1,0 +1,17 @@
+<ul class="pagination center-align">
+    <li class="waves-effect{% if not posts.has_previous %} disabled{% endif %}">
+        <a href="?page=1"><i class="material-icons">first_page</i></a>
+    </li>
+    <li class="waves-effect{% if not posts.has_previous %} disabled{% endif %}">
+        <a href="?page={% if posts.has_previous %}{{ posts.previous_page_number }}{% endif %}"><i class="material-icons">chevron_left</i></a>
+    </li>
+    {% for page in posts.paginator.page_range %}
+        <li class="waves-effect{% if page == posts.number %} active teal{% endif %}"><a href="?page={{ page }}">{{ page }}</a></li>
+    {% endfor %}
+    <li class="waves-effect{% if not posts.has_next %} disabled{% endif %}">
+        <a href="?page={% if posts.has_next %}{{ posts.next_page_number }}{% endif %}"><i class="material-icons">chevron_right</i></a>
+    </li>
+    <li class="waves-effect{% if not posts.has_next %} disabled{% endif %}">
+        <a href="?page={% if posts.has_next %}{{ posts.paginator.num_pages }}{% endif %}"><i class="material-icons">last_page</i></a>
+    </li>
+</ul>
