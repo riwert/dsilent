@@ -6,7 +6,19 @@
             <h2 class="center-align">{{ post.title }}</h2>
             <article class="card center-align">
                 <div class="card-content">
-                    {{ post.body }}
+                    {{ post.body }}                    
+                    {% if post.tags %}
+                        <ul class="tags collection">
+                            <li class="collection-item">
+                                Tags:
+                                {% for tag in post.tags.all %}
+                                    <a class="badge new" href="/posts/tag/{{ tag.name }}" title="{{ tag.name|escape }}">
+                                        #{{ tag.name }}
+                                    </a>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    {% endif %}
                     <div class="extra">
                         <small>
                             <strong>{{ post.author }}</strong> at {{ post.created_at }}

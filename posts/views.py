@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post, Category
+from .models import Post, Category, Tag
 
 # Create your views here.
 POSTS_LIMIT = 5
@@ -8,6 +8,7 @@ POSTS_LIMIT = 5
 def index(request):
     posts = Post.objects.all().order_by('-created_at')
     categories = Category.objects.all().order_by('name')
+    tags = Tag.objects.all().order_by('name')
 
     paginator = Paginator(posts, POSTS_LIMIT)
     page = request.GET.get('page')
@@ -17,6 +18,7 @@ def index(request):
         'title': 'Posts',
         'posts': posts,
         'categories': categories,
+        'tags': tags,
     }
 
     return render(request, 'posts/index.html', context)
@@ -41,6 +43,7 @@ def category(request, slug):
         category = Category.objects.get(slug=slug)
         posts = Post.objects.all().filter(category=category).order_by('-created_at')
     categories = Category.objects.all().order_by('name')
+    tags = Tag.objects.all().order_by('name')
 
     paginator = Paginator(posts, POSTS_LIMIT)
     page = request.GET.get('page')
@@ -50,6 +53,26 @@ def category(request, slug):
         'title': category.name if category else 'Without category',
         'posts': posts,
         'categories': categories,
+        'tags': tags,
+    }
+
+    return render(request, 'posts/index.html', context)
+
+def tag(request, slug):    
+    tag = Tag.objects.get(name=slug)
+    posts = Post.objects.all().filter(tags=tag).order_by('-created_at')
+    categories = Category.objects.all().order_by('name')
+    tags = Tag.objects.all().order_by('name')
+
+    paginator = Paginator(posts, POSTS_LIMIT)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    context = {
+        'title': '#' + tag.name,
+        'posts': posts,
+        'categories': categories,
+        'tags': tags,
     }
 
     return render(request, 'posts/index.html', context)

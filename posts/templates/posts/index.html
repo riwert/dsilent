@@ -42,6 +42,16 @@
                     </a>
                 </li>
             </ul>
+            <h5>Tags</h5>
+            <ul class="tags collection">
+                <li class="collection-item">                    
+                    {% for tag in tags %}
+                        <a class="badge new" href="/posts/tag/{{ tag.name }}" title="{{ tag.name|escape }}">
+                            #{{ tag.name }}
+                        </a>
+                    {% endfor %}
+                </li>
+            </ul>
         </div>
     </div>
 {% endblock %}

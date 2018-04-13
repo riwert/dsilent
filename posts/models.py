@@ -32,6 +32,16 @@ class CategoryAdmin(admin.ModelAdmin):
             obj.slug = self._get_unique_slug(obj)
         super().save_model(request, obj, form, change)
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+
+    def save(self, *args, **kwargs):
+        self.name = slugify(self.name)
+        super().save()
+
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
@@ -39,6 +49,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title
