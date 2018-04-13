@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Dsilent - Django Sample Project</title>
+    <title>{{ setting.site_title|default:'Blog Title' }}</title>
 </head>
 <body>
-    <header class="section center-align {{ primary_color }} white-text">
+    <header class="section center-align {{ setting.primary_color|default:'teal' }} white-text">
         <h1>
-            <a class="white-text" href="/" title="Dsilent">
-                Dsilent
+            <a class="white-text" href="/" title="{{ setting.site_header|escape|default:'Blog Header' }}">
+                {{ setting.site_header|default:'Blog Header' }}
             </a>
         </h1>
-        <h5>Django Blog System</h5>
-        <p>Because the D is silent.</p>
+        <h5>{{ setting.site_sub_header|default:'Blog Sub Header' }}</h5>
+        <p>{{ setting.site_small_header|default:'Blog Small Header.' }}</p>
     </header>
 
     <section id="content" class="section">
@@ -24,9 +24,9 @@
         {% endblock %}
     </section>
 
-    <footer class="page-footer {{ primary_color }} center-align">
+    <footer class="page-footer {{ setting.primary_color|default:'teal' }} center-align">
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large waves-effect waves-light {{ primary_color }}" href="/admin" title="Admin Panel">
+            <a class="btn-floating btn-large waves-effect waves-light {{ setting.primary_color|default:'teal' }}" href="/admin" title="Admin Panel">
                 <i class="material-icons">mode_edit</i>
             </a>
         </div>

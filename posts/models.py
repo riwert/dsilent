@@ -70,3 +70,14 @@ class PostAdmin(admin.ModelAdmin):
         if not obj.slug:
             obj.slug = self._get_unique_slug(obj)
         super().save_model(request, obj, form, change)
+
+class Setting(models.Model):
+    key = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
+
+    def save(self, *args, **kwargs):
+        self.key = slugify(self.key)
+        super().save()
+
+    def __str__(self):
+        return self.key

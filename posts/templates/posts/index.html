@@ -15,7 +15,7 @@
                         <p>{{ post.body|truncatewords:10 }}</p>
                     </div>
                     <div class="card-action">
-                        <a class="link btn waves-effect {{ primary_color }}" href="/{{ post.slug }}" title="Read more">read more</a>
+                        <a class="link btn waves-effect {{ setting.primary_color|default:'teal' }}" href="/{{ post.slug }}" title="Read more">read more</a>
                     </div>
                 </article>
             {% endfor %}
