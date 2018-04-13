@@ -9,7 +9,7 @@
     <title>Dsilent - Django Sample Project</title>
 </head>
 <body>
-    <header class="section center-align teal white-text">
+    <header class="section center-align {{ primary_color }} white-text">
         <h1>
             <a class="white-text" href="/" title="Dsilent">
                 Dsilent
@@ -24,9 +24,9 @@
         {% endblock %}
     </section>
 
-    <footer class="page-footer teal  center-align">
+    <footer class="page-footer {{ primary_color }} center-align">
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large waves-effect waves-light" href="/admin" title="Admin Panel">
+            <a class="btn-floating btn-large waves-effect waves-light {{ primary_color }}" href="/admin" title="Admin Panel">
                 <i class="material-icons">mode_edit</i>
             </a>
         </div>

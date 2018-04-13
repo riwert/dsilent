@@ -7,7 +7,7 @@
             <a href="?page={% if posts.has_previous %}{{ posts.previous_page_number }}{% endif %}"><i class="material-icons">chevron_left</i></a>
         </li>
         {% for page in posts.paginator.page_range %}
-            <li class="waves-effect{% if page == posts.number %} active teal{% endif %}"><a href="?page={{ page }}">{{ page }}</a></li>
+            <li class="waves-effect{% if page == posts.number %} active {{ primary_color }}{% endif %}"><a href="?page={{ page }}">{{ page }}</a></li>
         {% endfor %}
         <li class="waves-effect{% if not posts.has_next %} disabled{% endif %}">
             <a href="?page={% if posts.has_next %}{{ posts.next_page_number }}{% endif %}"><i class="material-icons">chevron_right</i></a>

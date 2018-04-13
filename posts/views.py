@@ -19,6 +19,7 @@ def index(request):
         'posts': posts,
         'categories': categories,
         'tags': tags,
+        'posts_limit': POSTS_LIMIT,
     }
 
     return render(request, 'posts/index.html', context)
