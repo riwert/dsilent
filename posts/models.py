@@ -46,10 +46,11 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
     slug = models.SlugField(unique=True, max_length=255, default=None, blank=True, null=True)
-    created_at = models.DateTimeField(default=datetime.now, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    image = models.ImageField(upload_to = 'post/', default=None, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True, blank=True)
     tags = models.ManyToManyField(Tag)
+    created_at = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.title
@@ -70,6 +71,10 @@ class PostAdmin(admin.ModelAdmin):
         if not obj.slug:
             obj.slug = self._get_unique_slug(obj)
         super().save_model(request, obj, form, change)
+
+class PostImage(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to = 'post/', default=None, null=True, blank=True)
 
 class Setting(models.Model):
     key = models.CharField(max_length=255)

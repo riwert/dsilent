@@ -6,7 +6,19 @@
             <h2 class="center-align">{{ post.title }}</h2>
             <article class="card center-align">
                 <div class="card-content">
-                    {{ post.body }}                    
+                    {% if post.image %}
+                        <div class="card-image">                                
+                            <src src="{{ post.image.url }}" alt="{{ post.image|escape }}">
+                        </div>
+                    {% endif %}
+                    {{ post.body }}
+                    {% if post.images.all %}
+                        <div class="images">
+                            {% for img in post.images.all %}
+                                <src src="{{ img.image.url }}" alt="{{ img.image|escape }}">
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     {% if post.tags %}
                         <ul class="tags collection">
                             <li class="collection-item">
