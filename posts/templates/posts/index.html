@@ -32,7 +32,7 @@
                 {% for category in categories %}
                     <li class="collection-item">
                         <a href="/category/{{ category.slug }}" title="{{ category.name|escape }}">
-                            {{ category.name }}
+                            {{ category.name }} ({{ category.post_set.count|default:0 }})
                         </a>
                     </li>
                 {% endfor %}
